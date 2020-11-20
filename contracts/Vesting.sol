@@ -8,7 +8,8 @@ contract Vesting {
 
     uint256 public startTime;
     uint256 public endTime;
-    uint256 public currentRelease = 1;
+    uint256 public currentRelease;
+    uint256 public releaseAmount;
     address public receiver;
 
     ERC20Interface private levI; 
@@ -16,13 +17,10 @@ contract Vesting {
 
     struct Release {
         uint256 timestamp;
-        uint256 amount;
         uint256 released;
     }
 
     mapping (uint256 => Release) public releases;
-
-    event ReleaseAdded(uint256 timestamp);
 
     constructor(address _levTokenAddress, address _dateTimeContract) {
         levI = ERC20Interface(_levTokenAddress);
@@ -33,25 +31,23 @@ contract Vesting {
         require(levI.transferFrom(msg.sender, address(this), _amountToVest));
         startTime = dateI._now();
         endTime = dateI.addMonths(startTime, 12);
-        uint256 releaseAmount = _amountToVest / 12;
+        releaseAmount = _amountToVest / 12;
+        receiver = _receiver;
         for (uint i = 1; i <= 12; i++) {
-            uint256 releaseDate = dateI.addMonths(startTime, i);
             releases[i] = Release({
-                timestamp: releaseDate,
-                amount: releaseAmount,
+                timestamp: dateI.addMonths(startTime, i),
                 released: 0
             });
-            emit ReleaseAdded(releaseDate);
         }
-        receiver = _receiver;
     }
 
     function release() public {
+        require(isPrepared() == true);
         uint256 timestamp = dateI._now();
         require(releases[currentRelease].released == 0, "already released");
         releases[currentRelease].released = 1;
         require(timestamp >= releases[currentRelease].timestamp, "release timestamp not yet passed");
-        require(levI.transfer(receiver, releases[currentRelease].amount ));
+        require(levI.transfer(receiver, releaseAmount));
         currentRelease += 1;
     }
 
@@ -61,5 +57,13 @@ contract Vesting {
             released = true;
         }
         return released;
+    }
+
+    function isPrepared() public view returns (bool) {
+        bool prepared = false;
+        if (receiver != address(0) && releaseAmount > 0 && currentRelease > 0) {
+            prepared = true;
+        }
+        return prepared;
     }
 }

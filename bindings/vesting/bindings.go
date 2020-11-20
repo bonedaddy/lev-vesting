@@ -27,10 +27,10 @@ var (
 )
 
 // VestingABI is the input ABI used to generate the binding from.
-const VestingABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_levTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_dateTimeContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"ReleaseAdded\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"currentRelease\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"endTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"isReleased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amountToVest\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"}],\"name\":\"prepareVest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"receiver\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"release\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"releases\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"released\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"startTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const VestingABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_levTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_dateTimeContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"currentRelease\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"endTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isPrepared\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"isReleased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amountToVest\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"}],\"name\":\"prepareVest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"receiver\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"release\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"releaseAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"releases\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"released\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"startTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // VestingBin is the compiled bytecode used for deploying new contracts.
-var VestingBin = "0x6080604052600160025534801561001557600080fd5b5060405161074a38038061074a8339818101604052604081101561003857600080fd5b508051602090910151600480546001600160a01b039384166001600160a01b031991821617909155600580549390921692169190911790556106cb8061007f6000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c806386d1a69f1161005b57806386d1a69f1461010e578063b6a9f40f14610116578063f7260d3e14610151578063fcfb9a6d1461017557610088565b80633197cbb61461008d57806369051143146100a757806373962b26146100d557806378e9792514610106575b600080fd5b61009561017d565b60408051918252519081900360200190f35b6100d3600480360360408110156100bd57600080fd5b50803590602001356001600160a01b0316610183565b005b6100f2600480360360208110156100eb57600080fd5b5035610444565b604080519115158252519081900360200190f35b61009561046a565b6100d3610470565b6101336004803603602081101561012c57600080fd5b503561065f565b60408051938452602084019290925282820152519081900360600190f35b610159610680565b604080516001600160a01b039092168252519081900360200190f35b61009561068f565b60015481565b60048054604080516323b872dd60e01b8152339381019390935230602484015260448301859052516001600160a01b03909116916323b872dd9160648083019260209291908290030181600087803b1580156101de57600080fd5b505af11580156101f2573d6000803e3d6000fd5b505050506040513d602081101561020857600080fd5b505161021357600080fd5b600560009054906101000a90046001600160a01b03166001600160a01b031663b3bb8cd46040518163ffffffff1660e01b815260040160206040518083038186803b15801561026157600080fd5b505afa158015610275573d6000803e3d6000fd5b505050506040513d602081101561028b57600080fd5b5051600081905560055460408051634355644d60e01b81526004810193909352600c6024840152516001600160a01b0390911691634355644d916044808301926020929190829003018186803b1580156102e457600080fd5b505afa1580156102f8573d6000803e3d6000fd5b505050506040513d602081101561030e57600080fd5b50516001908155600c8304905b600c811161041f576005546000805460408051634355644d60e01b81526004810192909252602482018590525191926001600160a01b031691634355644d91604480820192602092909190829003018186803b15801561037a57600080fd5b505afa15801561038e573d6000803e3d6000fd5b505050506040513d60208110156103a457600080fd5b505160408051606081018252828152602081810187815260008385018181528882526006845290859020935184559051600184015551600290920191909155815183815291519293507f0abdc1dc461ccb9bb62b1f33678a21e825c8d15e206042615b21155c5b37dfeb92918290030190a15060010161031b565b5050600380546001600160a01b0319166001600160a01b039290921691909117905550565b600081815260066020526040812060020154819060011415610464575060015b92915050565b60005481565b60055460408051632ceee33560e21b815290516000926001600160a01b03169163b3bb8cd4916004808301926020929190829003018186803b1580156104b557600080fd5b505afa1580156104c9573d6000803e3d6000fd5b505050506040513d60208110156104df57600080fd5b505160028054600090815260066020526040902001549091501561053d576040805162461bcd60e51b815260206004820152601060248201526f185b1c9958591e481c995b19585cd95960821b604482015290519081900360640190fd5b600280546000908152600660205260408082206001908401559154815220548110156105b0576040805162461bcd60e51b815260206004820181905260248201527f72656c656173652074696d657374616d70206e6f742079657420706173736564604482015290519081900360640190fd5b60048054600354600254600090815260066020908152604080832060010154815163a9059cbb60e01b81526001600160a01b0395861697810197909752602487015251929093169363a9059cbb93604480830194919391928390030190829087803b15801561061e57600080fd5b505af1158015610632573d6000803e3d6000fd5b505050506040513d602081101561064857600080fd5b505161065357600080fd5b50600280546001019055565b60066020526000908152604090208054600182015460029092015490919083565b6003546001600160a01b031681565b6002548156fea264697066735822122040460ee2fd38c282d44209991b4ee50b32d2a80d055bf33aa88f26790a50f1a364736f6c63430007040033"
+var VestingBin = "0x608060405234801561001057600080fd5b5060405161075d38038061075d8339818101604052604081101561003357600080fd5b508051602090910151600580546001600160a01b039384166001600160a01b031991821617909155600680549390921692169190911790556106e38061007a6000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c8063939c28e611610066578063939c28e61461012c578063b6a9f40f14610134578063c062dc5f1461016a578063f7260d3e14610172578063fcfb9a6d146101965761009e565b80633197cbb6146100a357806369051143146100bd57806373962b26146100eb57806378e979251461011c57806386d1a69f14610124575b600080fd5b6100ab61019e565b60408051918252519081900360200190f35b6100e9600480360360408110156100d357600080fd5b50803590602001356001600160a01b03166101a4565b005b6101086004803603602081101561010157600080fd5b503561041a565b604080519115158252519081900360200190f35b6100ab610440565b6100e9610446565b61010861063c565b6101516004803603602081101561014a57600080fd5b5035610679565b6040805192835260208301919091528051918290030190f35b6100ab610692565b61017a610698565b604080516001600160a01b039092168252519081900360200190f35b6100ab6106a7565b60015481565b600554604080516323b872dd60e01b81523360048201523060248201526044810185905290516001600160a01b03909216916323b872dd916064808201926020929091908290030181600087803b1580156101fe57600080fd5b505af1158015610212573d6000803e3d6000fd5b505050506040513d602081101561022857600080fd5b505161023357600080fd5b600660009054906101000a90046001600160a01b03166001600160a01b031663b3bb8cd46040518163ffffffff1660e01b815260040160206040518083038186803b15801561028157600080fd5b505afa158015610295573d6000803e3d6000fd5b505050506040513d60208110156102ab57600080fd5b5051600081905560065460408051634355644d60e01b81526004810193909352600c6024840152516001600160a01b0390911691634355644d916044808301926020929190829003018186803b15801561030457600080fd5b505afa158015610318573d6000803e3d6000fd5b505050506040513d602081101561032e57600080fd5b5051600155600c8204600355600480546001600160a01b0319166001600160a01b03831617905560015b600c81116104155760408051808201808352600654600054634355644d60e01b9092526044830191909152606482018490529151909182916001600160a01b0390911690634355644d90608480850191602091818703018186803b1580156103bf57600080fd5b505afa1580156103d3573d6000803e3d6000fd5b505050506040513d60208110156103e957600080fd5b505181526000602091820181905283815260078252604090208251815591015160019182015501610358565b505050565b60008181526007602052604081206001908101548291141561043a575060015b92915050565b60005481565b61044e61063c565b151560011461045c57600080fd5b60065460408051632ceee33560e21b815290516000926001600160a01b03169163b3bb8cd4916004808301926020929190829003018186803b1580156104a157600080fd5b505afa1580156104b5573d6000803e3d6000fd5b505050506040513d60208110156104cb57600080fd5b50516002546000908152600760205260409020600101549091501561052a576040805162461bcd60e51b815260206004820152601060248201526f185b1c9958591e481c995b19585cd95960821b604482015290519081900360640190fd5b6002805460009081526007602052604080822060019081015591548152205481101561059d576040805162461bcd60e51b815260206004820181905260248201527f72656c656173652074696d657374616d70206e6f742079657420706173736564604482015290519081900360640190fd5b600554600480546003546040805163a9059cbb60e01b81526001600160a01b039384169481019490945260248401919091525192169163a9059cbb916044808201926020929091908290030181600087803b1580156105fb57600080fd5b505af115801561060f573d6000803e3d6000fd5b505050506040513d602081101561062557600080fd5b505161063057600080fd5b50600280546001019055565b60045460009081906001600160a01b03161580159061065d57506000600354115b801561066b57506000600254115b15610674575060015b905090565b6007602052600090815260409020805460019091015482565b60035481565b6004546001600160a01b031681565b6002548156fea26469706673582212206bae6b8957da6a2e0a2a3912db32dd349c6cd7c7646449870120dc5983eddb4964736f6c63430007040033"
 
 // DeployVesting deploys a new Ethereum contract, binding an instance of Vesting to it.
 func DeployVesting(auth *bind.TransactOpts, backend bind.ContractBackend, _levTokenAddress common.Address, _dateTimeContract common.Address) (common.Address, *types.Transaction, *Vesting, error) {
@@ -250,6 +250,37 @@ func (_Vesting *VestingCallerSession) EndTime() (*big.Int, error) {
 	return _Vesting.Contract.EndTime(&_Vesting.CallOpts)
 }
 
+// IsPrepared is a free data retrieval call binding the contract method 0x939c28e6.
+//
+// Solidity: function isPrepared() view returns(bool)
+func (_Vesting *VestingCaller) IsPrepared(opts *bind.CallOpts) (bool, error) {
+	var out []interface{}
+	err := _Vesting.contract.Call(opts, &out, "isPrepared")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// IsPrepared is a free data retrieval call binding the contract method 0x939c28e6.
+//
+// Solidity: function isPrepared() view returns(bool)
+func (_Vesting *VestingSession) IsPrepared() (bool, error) {
+	return _Vesting.Contract.IsPrepared(&_Vesting.CallOpts)
+}
+
+// IsPrepared is a free data retrieval call binding the contract method 0x939c28e6.
+//
+// Solidity: function isPrepared() view returns(bool)
+func (_Vesting *VestingCallerSession) IsPrepared() (bool, error) {
+	return _Vesting.Contract.IsPrepared(&_Vesting.CallOpts)
+}
+
 // IsReleased is a free data retrieval call binding the contract method 0x73962b26.
 //
 // Solidity: function isReleased(uint256 _index) view returns(bool)
@@ -312,12 +343,42 @@ func (_Vesting *VestingCallerSession) Receiver() (common.Address, error) {
 	return _Vesting.Contract.Receiver(&_Vesting.CallOpts)
 }
 
+// ReleaseAmount is a free data retrieval call binding the contract method 0xc062dc5f.
+//
+// Solidity: function releaseAmount() view returns(uint256)
+func (_Vesting *VestingCaller) ReleaseAmount(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Vesting.contract.Call(opts, &out, "releaseAmount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// ReleaseAmount is a free data retrieval call binding the contract method 0xc062dc5f.
+//
+// Solidity: function releaseAmount() view returns(uint256)
+func (_Vesting *VestingSession) ReleaseAmount() (*big.Int, error) {
+	return _Vesting.Contract.ReleaseAmount(&_Vesting.CallOpts)
+}
+
+// ReleaseAmount is a free data retrieval call binding the contract method 0xc062dc5f.
+//
+// Solidity: function releaseAmount() view returns(uint256)
+func (_Vesting *VestingCallerSession) ReleaseAmount() (*big.Int, error) {
+	return _Vesting.Contract.ReleaseAmount(&_Vesting.CallOpts)
+}
+
 // Releases is a free data retrieval call binding the contract method 0xb6a9f40f.
 //
-// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 amount, uint256 released)
+// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 released)
 func (_Vesting *VestingCaller) Releases(opts *bind.CallOpts, arg0 *big.Int) (struct {
 	Timestamp *big.Int
-	Amount    *big.Int
 	Released  *big.Int
 }, error) {
 	var out []interface{}
@@ -325,13 +386,11 @@ func (_Vesting *VestingCaller) Releases(opts *bind.CallOpts, arg0 *big.Int) (str
 
 	outstruct := new(struct {
 		Timestamp *big.Int
-		Amount    *big.Int
 		Released  *big.Int
 	})
 
 	outstruct.Timestamp = out[0].(*big.Int)
-	outstruct.Amount = out[1].(*big.Int)
-	outstruct.Released = out[2].(*big.Int)
+	outstruct.Released = out[1].(*big.Int)
 
 	return *outstruct, err
 
@@ -339,10 +398,9 @@ func (_Vesting *VestingCaller) Releases(opts *bind.CallOpts, arg0 *big.Int) (str
 
 // Releases is a free data retrieval call binding the contract method 0xb6a9f40f.
 //
-// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 amount, uint256 released)
+// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 released)
 func (_Vesting *VestingSession) Releases(arg0 *big.Int) (struct {
 	Timestamp *big.Int
-	Amount    *big.Int
 	Released  *big.Int
 }, error) {
 	return _Vesting.Contract.Releases(&_Vesting.CallOpts, arg0)
@@ -350,10 +408,9 @@ func (_Vesting *VestingSession) Releases(arg0 *big.Int) (struct {
 
 // Releases is a free data retrieval call binding the contract method 0xb6a9f40f.
 //
-// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 amount, uint256 released)
+// Solidity: function releases(uint256 ) view returns(uint256 timestamp, uint256 released)
 func (_Vesting *VestingCallerSession) Releases(arg0 *big.Int) (struct {
 	Timestamp *big.Int
-	Amount    *big.Int
 	Released  *big.Int
 }, error) {
 	return _Vesting.Contract.Releases(&_Vesting.CallOpts, arg0)
@@ -430,137 +487,4 @@ func (_Vesting *VestingSession) Release() (*types.Transaction, error) {
 // Solidity: function release() returns()
 func (_Vesting *VestingTransactorSession) Release() (*types.Transaction, error) {
 	return _Vesting.Contract.Release(&_Vesting.TransactOpts)
-}
-
-// VestingReleaseAddedIterator is returned from FilterReleaseAdded and is used to iterate over the raw logs and unpacked data for ReleaseAdded events raised by the Vesting contract.
-type VestingReleaseAddedIterator struct {
-	Event *VestingReleaseAdded // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *VestingReleaseAddedIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(VestingReleaseAdded)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(VestingReleaseAdded)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *VestingReleaseAddedIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *VestingReleaseAddedIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// VestingReleaseAdded represents a ReleaseAdded event raised by the Vesting contract.
-type VestingReleaseAdded struct {
-	Timestamp *big.Int
-	Raw       types.Log // Blockchain specific contextual infos
-}
-
-// FilterReleaseAdded is a free log retrieval operation binding the contract event 0x0abdc1dc461ccb9bb62b1f33678a21e825c8d15e206042615b21155c5b37dfeb.
-//
-// Solidity: event ReleaseAdded(uint256 timestamp)
-func (_Vesting *VestingFilterer) FilterReleaseAdded(opts *bind.FilterOpts) (*VestingReleaseAddedIterator, error) {
-
-	logs, sub, err := _Vesting.contract.FilterLogs(opts, "ReleaseAdded")
-	if err != nil {
-		return nil, err
-	}
-	return &VestingReleaseAddedIterator{contract: _Vesting.contract, event: "ReleaseAdded", logs: logs, sub: sub}, nil
-}
-
-// WatchReleaseAdded is a free log subscription operation binding the contract event 0x0abdc1dc461ccb9bb62b1f33678a21e825c8d15e206042615b21155c5b37dfeb.
-//
-// Solidity: event ReleaseAdded(uint256 timestamp)
-func (_Vesting *VestingFilterer) WatchReleaseAdded(opts *bind.WatchOpts, sink chan<- *VestingReleaseAdded) (event.Subscription, error) {
-
-	logs, sub, err := _Vesting.contract.WatchLogs(opts, "ReleaseAdded")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(VestingReleaseAdded)
-				if err := _Vesting.contract.UnpackLog(event, "ReleaseAdded", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseReleaseAdded is a log parse operation binding the contract event 0x0abdc1dc461ccb9bb62b1f33678a21e825c8d15e206042615b21155c5b37dfeb.
-//
-// Solidity: event ReleaseAdded(uint256 timestamp)
-func (_Vesting *VestingFilterer) ParseReleaseAdded(log types.Log) (*VestingReleaseAdded, error) {
-	event := new(VestingReleaseAdded)
-	if err := _Vesting.contract.UnpackLog(event, "ReleaseAdded", log); err != nil {
-		return nil, err
-	}
-	return event, nil
 }
