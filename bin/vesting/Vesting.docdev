@@ -1,5 +1,15 @@
 {
   "kind": "dev",
-  "methods": {},
+  "methods":
+  {
+    "prepare(uint256,address)":
+    {
+      "params":
+      {
+        "_amountToVest": "is the amount of tokens to be vested",
+        "_receiver": "is the address that will be allowed to receive the withdrawn funds"
+      }
+    }
+  },
   "version": 1
 }

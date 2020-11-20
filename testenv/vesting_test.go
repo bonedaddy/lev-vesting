@@ -29,7 +29,7 @@ func TestDeployVestingContract(t *testing.T) {
 	require.NoError(t, err)
 	testenv.DoWaitMined(tx, "approve")
 
-	tx, err = vestC.PrepareVest(testenv.Auth, utils.TeamTokensVested, testenv.Auth.From)
+	tx, err = vestC.Prepare(testenv.Auth, utils.TeamTokensVested, testenv.Auth.From)
 	require.NoError(t, err)
 	testenv.DoWaitMined(tx, "prepare vest")
 

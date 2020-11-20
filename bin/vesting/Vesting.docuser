@@ -1,5 +1,23 @@
 {
   "kind": "user",
-  "methods": {},
+  "methods":
+  {
+    "isPrepared()":
+    {
+      "notice": "returns whether or note the vesting contract has been prepared"
+    },
+    "isReleased(uint256)":
+    {
+      "notice": "returns whether or not the given cycle has released the tokens"
+    },
+    "prepare(uint256,address)":
+    {
+      "notice": "prepares the contract for vesting, depositing tokens and marking the address that will be allowed to receive vested funds"
+    },
+    "release()":
+    {
+      "notice": "release funds for the current vesting cycle"
+    }
+  },
   "version": 1
 }
