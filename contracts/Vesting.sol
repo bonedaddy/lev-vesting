@@ -15,12 +15,7 @@ contract Vesting {
     DateTimeInterface private dateI;
 
     struct Release {
-        uint256 year;
-        uint256 month;
-        uint256 day;
-        uint256 hour;
-        uint256 min;
-        uint256 sec;
+        uint256 timestamp;
         uint256 amount;
         uint256 released;
     }
@@ -41,14 +36,8 @@ contract Vesting {
         uint256 releaseAmount = _amountToVest / 12;
         for (uint i = 1; i <= 12; i++) {
             uint256 releaseDate = dateI.addMonths(startTime, i);
-            (uint256 year, uint256 month, uint256 day, uint256 hour, uint256 min, uint256 sec) = dateI.timestampToDateTime(releaseDate);
             releases[i] = Release({
-                year: year,
-                month: month,
-                day: day,
-                hour: hour,
-                min: min,
-                sec: sec,
+                timestamp: releaseDate,
                 amount: releaseAmount,
                 released: 0
             });
@@ -61,13 +50,8 @@ contract Vesting {
         uint256 timestamp = dateI._now();
         require(releases[currentRelease].released == 0, "already released");
         releases[currentRelease].released = 1;
-        // load the struct from storage into memory
-        // this will allow us to read subsequent values from memory 
-        // without having to read from storage
-        Release memory mr = releases[currentRelease];
-        uint256 releaseTimestamp = dateI.timestampFromDateTime(mr.year, mr.month, mr.day, mr.hour, mr.min, mr.sec);
-        require(timestamp >= releaseTimestamp, "release timestamp not yet passed");
-        require(levI.transfer(receiver, mr.amount ));
+        require(timestamp >= releases[currentRelease].timestamp, "release timestamp not yet passed");
+        require(levI.transfer(receiver, releases[currentRelease].amount ));
         currentRelease += 1;
     }
 
