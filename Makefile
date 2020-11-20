@@ -39,8 +39,12 @@ interfaces:
 	./scripts/abi2solidity.sh \
 		bin/datetime/BokkyPooBahsDateTimeContract.abi \
 		contracts/interfaces/DateTimeInterface.sol \
-		DateTimeInterface
+		DateTimeInterface \
+		"pragma solidity 0.7.3;"
 
+.PHONY: flatten
+flatten:
+	./scripts/solidityFlattener.pl --mainsol=Vesting.sol --outputsol=flattened/Vesting_Flattened.sol
 
 .PHONY: all
 all: compile abigen interfaces

@@ -23,3 +23,17 @@ The following values are logged from unit tests which use go-ethereum simulated 
 | Vesting deployment | 492694 |
 | Vest preparation | 455530 |
 | Vest release | 77157 |
+
+# Development
+
+## Dependencies
+
+* Linux 64-bit OS
+* Go 1.15
+* 
+
+## Compilation
+
+# Deployment
+
+Take `flattened/Vesting_Flattened.sol` and use whatever preferred deployment system (truffle, hardhat, etc..)
