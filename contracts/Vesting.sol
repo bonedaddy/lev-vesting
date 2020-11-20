@@ -33,6 +33,7 @@ contract Vesting {
         endTime = dateI.addMonths(startTime, 12);
         releaseAmount = _amountToVest / 12;
         receiver = _receiver;
+        currentRelease = 1;
         for (uint i = 1; i <= 12; i++) {
             releases[i] = Release({
                 timestamp: dateI.addMonths(startTime, i),
