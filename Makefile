@@ -23,3 +23,13 @@ abigen:
 		datetime \
 		bindings/datetime/bindings.go \
 		--alias="getDaysInMonth=getDaysInMonth2,_isLeapYear=IsLeapYear2"
+
+.PHONY: interfaces
+interfaces:
+	./scripts/abi2solidity.sh \
+		bin/datetime/BokkyPooBahsDateTimeContract.abi \
+		contracts/interfaces/DateTimeInterface.sol
+
+
+.PHONY: all
+all: compile abigen interfaces
