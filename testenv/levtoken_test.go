@@ -13,7 +13,7 @@ func TestDeployLevToken(t *testing.T) {
 	testenv, err := NewBlockchain()
 	require.NoError(t, err)
 
-	supply := utils.ToWei(125000000.0, 18)
+	supply := utils.MaxSupply
 
 	contract, err := DeployLevToken(testenv, supply)
 	require.NoError(t, err)
