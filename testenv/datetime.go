@@ -5,17 +5,18 @@ import (
 
 	"github.com/bonedaddy/lev-vesting/bindings/datetime"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 )
 
-func DeployDateTime(testenv *Testenv) (*datetime.Datetime, error) {
+func DeployDateTime(testenv *Testenv) (common.Address, *datetime.Datetime, error) {
 	_, tx, contract, err := datetime.DeployDatetime(testenv.Auth, testenv)
 	if err != nil {
-		return nil, err
+		return common.Address{}, nil, err
 	}
 	testenv.Commit()
-	_, err = bind.WaitDeployed(context.Background(), testenv, tx)
+	addr, err := bind.WaitDeployed(context.Background(), testenv, tx)
 	if err != nil {
-		return nil, err
+		return common.Address{}, nil, err
 	}
-	return contract, nil
+	return addr, contract, nil
 }
