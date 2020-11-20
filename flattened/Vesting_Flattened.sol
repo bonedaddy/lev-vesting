@@ -151,9 +151,11 @@ contract Vesting {
         require(timestamp >= releases[currentCycle].timestamp, "release timestamp not yet passed");
         // transfer tokens to designated receiver wallet
         require(levI.transfer(receiver, releaseAmount));
-        // move onto the next cycle
-        currentCycle += 1;
-        // release the tokens
+        // move onto the next cycle (if we arent cycle 12 which is last)
+        if (currentCycle < 12) {
+            currentCycle += 1;
+        }
+        // emit event indicating tokens are released
         emit TokensReleased();
         
     }
