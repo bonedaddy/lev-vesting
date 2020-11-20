@@ -10,7 +10,7 @@ func DeployDateTime(testenv *Testenv) (common.Address, *datetime.Datetime, error
 	if err != nil {
 		return common.Address{}, nil, err
 	}
-	addr, err := testenv.DoWaitDeployed(tx)
+	addr, err := testenv.DoWaitDeployed(tx, "datetime")
 
 	return addr, contract, nil
 }

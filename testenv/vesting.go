@@ -11,6 +11,6 @@ func DeployVestingContract(testenv *Testenv, levToken common.Address, dateTime c
 	if err != nil {
 		return common.Address{}, nil, err
 	}
-	addr, err := testenv.DoWaitDeployed(tx)
+	addr, err := testenv.DoWaitDeployed(tx, "vesting")
 	return addr, contract, nil
 }

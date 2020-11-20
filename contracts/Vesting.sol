@@ -1,9 +1,14 @@
 pragma solidity >=0.4.24 <=0.8.0;
 
-import "./math/SafeMath.sol";
 import "./interfaces/ERC20I.sol";
 import "./interfaces/DateTimeInterface.sol";
 
+/**
+  * @notice Vesting contract designed to release funds on a monthly basis over a 12 month period
+  * @notice all funds deposited into the vesting contract are evenly distributed across the 12 months
+  * @notice The contract was designed to accomodate the needs of Leverage Token and as such may not be applicable in other circumstances
+  * @notice for example there is no usage of safe math, as the values being vested by Leverage Token can't overflow so no need for extra gas cost
+*/
 contract Vesting {
 
     uint256 public startTime;

@@ -40,7 +40,16 @@ func (t *Testenv) DoWaitMined(tx *types.Transaction, printArgs ...string) error 
 	return err
 }
 
-func (t *Testenv) DoWaitDeployed(tx *types.Transaction) (common.Address, error) {
+func (t *Testenv) DoWaitDeployed(tx *types.Transaction, printArgs ...string) (common.Address, error) {
 	t.Commit()
-	return bind.WaitDeployed(context.Background(), t, tx)
+	addr, err := bind.WaitDeployed(context.Background(), t, tx)
+	if err != nil {
+		return common.Address{}, err
+	}
+	rcpt, err := t.TransactionReceipt(context.Background(), tx.Hash())
+	if err != nil {
+		return common.Address{}, err
+	}
+	log.Println("gas used by transaction: ", rcpt.CumulativeGasUsed, printArgs)
+	return addr, nil
 }
