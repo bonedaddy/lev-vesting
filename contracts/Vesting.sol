@@ -71,7 +71,7 @@ contract Vesting {
         currentRelease += 1;
     }
 
-    function isRelease(uint256 _index) public view returns (bool) {
+    function isReleased(uint256 _index) public view returns (bool) {
         bool released = false;
         if (releases[_index].released == 1) {
             released = true;

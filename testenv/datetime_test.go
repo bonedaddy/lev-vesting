@@ -9,6 +9,6 @@ import (
 func TestDeployDateTime(t *testing.T) {
 	testenv, err := NewBlockchain()
 	require.NoError(t, err)
-	contract, err := DeployDateTime(testenv)
+	_, _, err = DeployDateTime(testenv)
 	require.NoError(t, err)
 }

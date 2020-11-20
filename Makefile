@@ -8,6 +8,9 @@ compile:
 		contracts/utils/time/BokkyPooBahsDateTimeContract.sol \
 		bin/datetime \
 		compilers/solc-v0.6.0
+	./scripts/solc_compile.sh \
+		contracts/Vesting.sol \
+		bin/vesting \
 
 .PHONY: abigen
 abigen:
@@ -23,6 +26,12 @@ abigen:
 		datetime \
 		bindings/datetime/bindings.go \
 		--alias="getDaysInMonth=getDaysInMonth2,_isLeapYear=IsLeapYear2"
+
+	./scripts/abigen.sh \
+		bin/vesting/Vesting.bin \
+		bin/vesting/Vesting.abi \
+		vesting \
+		bindings/vesting/bindings.go
 
 .PHONY: interfaces
 interfaces:

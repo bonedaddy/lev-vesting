@@ -1,6 +1,7 @@
 package testenv
 
 import (
+	"context"
 	"math/big"
 
 	"github.com/bonedaddy/lev-vesting/utils"
@@ -8,6 +9,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 type Testenv struct {
@@ -28,4 +30,15 @@ func NewBlockchain() (*Testenv, error) {
 	}
 	sim := backends.NewSimulatedBackend(gAlloc, 8000000)
 	return &Testenv{Auth: auth, SimulatedBackend: sim}, nil
+}
+
+func (t *Testenv) DoWaitMined(tx *types.Transaction) error {
+	t.Commit()
+	_, err := bind.WaitMined(context.Background(), t, tx)
+	return err
+}
+
+func (t *Testenv) DoWaitDeployed(tx *types.Transaction) (common.Address, error) {
+	t.Commit()
+	return bind.WaitDeployed(context.Background(), t, tx)
 }

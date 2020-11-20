@@ -15,7 +15,7 @@ func TestDeployLevToken(t *testing.T) {
 
 	supply := utils.MaxSupply
 
-	contract, err := DeployLevToken(testenv, supply)
+	_, contract, err := DeployLevToken(testenv, supply)
 	require.NoError(t, err)
 
 	tx, err := contract.Mint(testenv.Auth, testenv.Auth.From, supply)

@@ -1,25 +1,18 @@
 package testenv
 
 import (
-	"context"
-	"log"
 	"math/big"
 
 	"github.com/bonedaddy/lev-vesting/bindings/levtoken"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 )
 
 // DeployLevToken is used to deploy the leverage token
-func DeployLevToken(testenv *Testenv, supply *big.Int) (*levtoken.Levtoken, error) {
+func DeployLevToken(testenv *Testenv, supply *big.Int) (common.Address, *levtoken.Levtoken, error) {
 	_, tx, contract, err := levtoken.DeployLevtoken(testenv.Auth, testenv, "LeverageToken", "LEV", supply)
 	if err != nil {
-		return nil, err
+		return common.Address{}, nil, err
 	}
-	testenv.Commit()
-	_, err = bind.WaitDeployed(context.Background(), testenv, tx)
-	if err != nil {
-		log.Println("failed to wait for deploy tx to be mined")
-		return nil, err
-	}
-	return contract, nil
+	addr, err := testenv.DoWaitDeployed(tx)
+	return addr, contract, nil
 }
