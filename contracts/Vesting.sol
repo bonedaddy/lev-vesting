@@ -38,7 +38,7 @@ contract Vesting {
         require(levI.transferFrom(msg.sender, address(this), _amountToVest));
         startTime = dateI._now();
         endTime = dateI.addMonths(startTime, 12);
-        uint256 releaseAmount = _amountToVest * 12;
+        uint256 releaseAmount = _amountToVest / 12;
         for (uint i = 1; i <= 12; i++) {
             uint256 releaseDate = dateI.addMonths(startTime, i);
             (uint256 year, uint256 month, uint256 day, uint256 hour, uint256 min, uint256 sec) = dateI.timestampToDateTime(releaseDate);
