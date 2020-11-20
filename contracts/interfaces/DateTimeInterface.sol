@@ -1,4 +1,4 @@
-pragma solidity >=0.4.24 <=0.8.0;
+pragma solidity 0.7.3;
 interface DateTimeInterface {
   function DOW_FRI (  ) external view returns ( uint256 );
   function DOW_MON (  ) external view returns ( uint256 );

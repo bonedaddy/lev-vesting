@@ -1,4 +1,4 @@
-pragma solidity >=0.4.24 <=0.8.0;
+pragma solidity 0.7.3;
 
 import "./interfaces/ERC20I.sol";
 import "./interfaces/DateTimeInterface.sol";
