@@ -33,4 +33,8 @@ func TestDeployVestingContract(t *testing.T) {
 	require.NoError(t, err)
 	testenv.DoWaitMined(tx)
 
+	receiver, err := vestC.Receiver(nil)
+	require.NoError(t, err)
+	require.Equal(t, receiver, testenv.Auth.From)
+
 }
