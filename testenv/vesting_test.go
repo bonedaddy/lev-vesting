@@ -135,6 +135,12 @@ func TestDeployVestingContract(t *testing.T) {
 			require.NoError(t, err)
 			require.Equal(t, cycle, tt.wantCycle)
 
+			if !tt.wantErr {
+				released, err := vestC.IsReleased(nil, cycle)
+				require.NoError(t, err)
+				require.False(t, released)
+			}
+
 			if tt.args.doIncrease {
 				require.NoError(t, testenv.AdjustTime(tt.args.increaseAmt))
 				testenv.Commit()
@@ -147,6 +153,12 @@ func TestDeployVestingContract(t *testing.T) {
 			}
 			if tx != nil {
 				testenv.DoWaitMined(tx, "release")
+			}
+
+			if !tt.wantErr {
+				released, err := vestC.IsReleased(nil, cycle)
+				require.NoError(t, err)
+				require.True(t, released)
 			}
 
 		})
