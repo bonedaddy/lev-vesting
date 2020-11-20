@@ -1,13 +1,10 @@
 # LEV Vesting
 
-Vesting contracts for the $LEV token
+Vesting contract for the $LEV token
 
 # Vesting Stats
 
 75% of team tokens vested for 12 months, released every month
-
-
-We will need a contract vesting 75% of team tokens for 12 months, released monthly
 
 # Date Time Contract
 
@@ -30,10 +27,32 @@ The following values are logged from unit tests which use go-ethereum simulated 
 
 * Linux 64-bit OS
 * Go 1.15
-* 
+* Make
 
 ## Compilation
 
+* `make compile`
+  * Compiles the Leverage token (note this is just used for testing)
+  * Compiles DateTime contracts
+  * Compiles vesting contract
+  * Generates JSON ABI files for all contracts in `bin`
+
+## Golang Bindings Update
+
+Updates the golang code bindings for the smart contracts
+
+* `make abigen`
+
+## Flattening 
+
+Flattens the Vesting contract into a single file, suitable for etherscan verification, usage with any solidity development environment, etc...
+
+* `make flatten`
+
+## All Of The Above
+
+* `make all`
+
 # Deployment
 
-Take `flattened/Vesting_Flattened.sol` and use whatever preferred deployment system (truffle, hardhat, etc..)
+Take `flattened/Vesting_Flattened.sol` and use whatever preferred deployment system or development environment (truffle, hardhat, etc..). It should be compiled using Solidity 0.7.3, however you can manually adjust the compiler versiont to 0.7.x as desired.
