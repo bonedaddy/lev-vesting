@@ -30,10 +30,14 @@ contract Vesting {
 
     event TokensReleased();
 
-    constructor(address _levTokenAddress, address _dateTimeContract) {
+    /**
+      * @param _levTokenAddress the address of the deployed LEV token contract
+      * @param _dateTimeContract the address of the deployed date time contract
+    */
+    constructor(address _levTokenAddress, address _dateTimeContract, address _owner) {
         levI = ERC20Interface(_levTokenAddress);
         dateI = DateTimeInterface(_dateTimeContract);
-        owner = msg.sender;
+        owner = _owner;
     }
 
     /**
@@ -45,6 +49,8 @@ contract Vesting {
     function prepare(uint256 _amountToVest, address _receiver) public {
         // make sure only contract owner can call this
         require(msg.sender == owner);
+        // make sure prepared is false
+        require(isPrepared() == false);
         require(levI.transferFrom(msg.sender, address(this), _amountToVest));
         // the current time when vesting starts
         uint256 _startTime = dateI._now();

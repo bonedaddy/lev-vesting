@@ -2,6 +2,14 @@
   "kind": "dev",
   "methods":
   {
+    "constructor":
+    {
+      "params":
+      {
+        "_dateTimeContract": "the address of the deployed date time contract",
+        "_levTokenAddress": "the address of the deployed LEV token contract"
+      }
+    },
     "prepare(uint256,address)":
     {
       "params":
