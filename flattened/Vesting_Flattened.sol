@@ -83,6 +83,7 @@ contract Vesting {
     uint256 public currentCycle;
     uint256 public releaseAmount;
     address public receiver;
+    address public owner;
 
     ERC20Interface private levI; 
     DateTimeInterface private dateI;
@@ -99,6 +100,7 @@ contract Vesting {
     constructor(address _levTokenAddress, address _dateTimeContract) {
         levI = ERC20Interface(_levTokenAddress);
         dateI = DateTimeInterface(_dateTimeContract);
+        owner = msg.sender;
     }
 
     /**
@@ -108,6 +110,8 @@ contract Vesting {
       * @param _receiver is the address that will be allowed to receive the withdrawn funds
     */
     function prepare(uint256 _amountToVest, address _receiver) public {
+        // make sure only contract owner can call this
+        require(msg.sender == owner);
         require(levI.transferFrom(msg.sender, address(this), _amountToVest));
         // the current time when vesting starts
         uint256 _startTime = dateI._now();
@@ -131,6 +135,8 @@ contract Vesting {
 
     /**
         * @notice release funds for the current vesting cycle
+        * @notice while it is callable by anyone, funds are sent to a fixed address
+        * @notice regardless of who calls this function, so owner check is avoided to save gas
     */
     function release() public {
         // make sure prepare function has been called and successfully executed

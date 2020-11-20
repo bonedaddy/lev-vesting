@@ -47,4 +47,4 @@ flatten:
 	./scripts/solidityFlattener.pl --mainsol=Vesting.sol --outputsol=flattened/Vesting_Flattened.sol
 
 .PHONY: all
-all: compile abigen interfaces
+all: compile abigen interfaces flatten
