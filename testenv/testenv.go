@@ -2,6 +2,7 @@ package testenv
 
 import (
 	"context"
+	"log"
 	"math/big"
 
 	"github.com/bonedaddy/lev-vesting/utils"
@@ -32,9 +33,10 @@ func NewBlockchain() (*Testenv, error) {
 	return &Testenv{Auth: auth, SimulatedBackend: sim}, nil
 }
 
-func (t *Testenv) DoWaitMined(tx *types.Transaction) error {
+func (t *Testenv) DoWaitMined(tx *types.Transaction, printArgs ...string) error {
 	t.Commit()
-	_, err := bind.WaitMined(context.Background(), t, tx)
+	rcpt, err := bind.WaitMined(context.Background(), t, tx)
+	log.Println("gas used by transaction: ", rcpt.CumulativeGasUsed, printArgs)
 	return err
 }
 
