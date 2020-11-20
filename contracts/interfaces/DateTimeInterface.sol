@@ -1,5 +1,5 @@
 pragma solidity >=0.4.24 <=0.8.0;
-interface GeneratedInterface {
+interface DateTimeInterface {
   function DOW_FRI (  ) external view returns ( uint256 );
   function DOW_MON (  ) external view returns ( uint256 );
   function DOW_SAT (  ) external view returns ( uint256 );

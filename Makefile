@@ -28,7 +28,8 @@ abigen:
 interfaces:
 	./scripts/abi2solidity.sh \
 		bin/datetime/BokkyPooBahsDateTimeContract.abi \
-		contracts/interfaces/DateTimeInterface.sol
+		contracts/interfaces/DateTimeInterface.sol \
+		DateTimeInterface
 
 
 .PHONY: all
