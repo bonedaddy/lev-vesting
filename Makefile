@@ -11,6 +11,7 @@ compile:
 	./scripts/solc_compile.sh \
 		contracts/Vesting.sol \
 		bin/vesting \
+		compilers/solc-v0.7.3
 
 .PHONY: abigen
 abigen:
